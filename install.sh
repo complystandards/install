@@ -1,7 +1,7 @@
 #!/bin/sh
 # Comply Standards: one-command install for a self-hosted app (Ubuntu/Debian/any Linux with Docker).
 #
-#   curl -fsSL <install-url>/install.sh | sudo sh -s -- <app>
+#   curl -fsSL https://raw.githubusercontent.com/complystandards/install/main/install.sh | sudo sh -s -- <app>
 #
 # Installs Docker if needed, signs in with your access key (if you were given one), then fetches the approved
 # release and hands over to "guardian", which asks a few questions, generates all passwords and keys, starts
@@ -14,7 +14,7 @@ set -eu
 APP="${1:-${APP:-}}"
 REGISTRY="${REGISTRY:-ghcr.io/complystandards}"
 CHANNEL="${CHANNEL:-stable}"
-[ -n "$APP" ] || { echo "Usage: curl -fsSL <install-url>/install.sh | sudo sh -s -- <app>"; exit 1; }
+[ -n "$APP" ] || { echo "Usage: curl -fsSL https://raw.githubusercontent.com/complystandards/install/main/install.sh | sudo sh -s -- <app>"; exit 1; }
 [ "$(id -u)" = 0 ] || { echo "Please run with sudo (as root)."; exit 1; }
 DIR="${INSTALL_DIR:-/opt/$APP}"
 BUNDLE="$REGISTRY/$APP-bundle:$CHANNEL"
